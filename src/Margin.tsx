@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { maybe } from './utils'
+import { makeClassnames } from './utils'
 
 type MarginValue = 'auto' | number
 
@@ -29,18 +29,16 @@ export function Margin({
 }: MarginProps) {
   const el = inline ? 'span' : 'div'
 
-  const classnames = [
-    ...maybe(inline, 'inline-block'),
-    ...maybe(all, `m-${all}`),
-    ...maybe(horizontal, `mx-${horizontal}`),
-    ...maybe(vertical, `my-${vertical}`),
-    ...maybe(top, `mt-${top}`),
-    ...maybe(right, `mr-${right}`),
-    ...maybe(bottom, `mb-${bottom}`),
-    ...maybe(left, `ml-${left}`),
-  ]
-    .join(' ')
-    .trim()
+  const classnames = makeClassnames(
+    [inline, 'inline-block'],
+    [all, `m-${all}`],
+    [horizontal, `mx-${horizontal}`],
+    [vertical, `my-${vertical}`],
+    [top, `mt-${top}`],
+    [right, `mr-${right}`],
+    [bottom, `mb-${bottom}`],
+    [left, `ml-${left}`]
+  )
 
   return React.createElement(el, { className: classnames, ...rest }, children)
 }

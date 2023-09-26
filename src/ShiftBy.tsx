@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { maybe } from './utils'
+import { makeClassnames } from './utils'
 
 export interface ShiftByProps {
   children: React.ReactNode
@@ -12,12 +12,10 @@ function maybeNegate(num: number) {
 }
 
 export function ShiftBy({ children, x = 0, y = 0, ...rest }: ShiftByProps) {
-  const classnames = [
-    ...maybe(x, `${maybeNegate(x)}translate-x-${Math.abs(x)}-px`),
-    ...maybe(y, `${maybeNegate(y)}translate-y-${Math.abs(y)}-px`),
-  ]
-    .join(' ')
-    .trim()
+  const classnames = makeClassnames(
+    [x, `${maybeNegate(x)}translate-x-${Math.abs(x)}-px`],
+    [y, `${maybeNegate(y)}translate-y-${Math.abs(y)}-px`]
+  )
 
   return (
     <div className={classnames} {...rest}>

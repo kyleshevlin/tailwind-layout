@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { maybe } from './utils'
+import { makeClassnames } from './utils'
 
 export interface FlexProps {
   align?: 'baseline' | 'center' | 'end' | 'start' | 'stretch'
@@ -29,17 +29,15 @@ export function Flex({
   wrap,
   ...rest
 }: FlexProps) {
-  const classnames = [
+  const classnames = makeClassnames(
     'flex',
-    ...maybe(align, `items-${align}`),
-    ...maybe(direction, `flex-${direction}`),
-    ...maybe(gap, `gap-${gap}`),
-    ...maybe(justify, `justify-${justify}`),
-    ...maybe(wrap, `flex-${wrap}`),
-    className,
-  ]
-    .join(' ')
-    .trim()
+    [align, `items-${align}`],
+    [direction, `flex-${direction}`],
+    [gap, `gap-${gap}`],
+    [justify, `justify-${justify}`],
+    [wrap, `flex-${wrap}`],
+    className
+  )
 
   return (
     <div className={classnames} {...rest}>
@@ -74,15 +72,13 @@ export function FlexItem({
   shrink,
   ...rest
 }: FlexItemProps) {
-  const classnames = [
-    ...maybe(align, `self-${align}`),
-    ...maybe(basis, `basis-${basis}`),
-    ...maybe(grow, `grow-${grow}`),
-    ...maybe(shrink, `shrink-${grow}`),
-    className,
-  ]
-    .join(' ')
-    .trim()
+  const classnames = makeClassnames(
+    [align, `self-${align}`],
+    [basis, `basis-${basis}`],
+    [grow, `grow-${grow}`],
+    [shrink, `shrink-${grow}`],
+    className
+  )
 
   return (
     <div className={classnames} {...rest}>

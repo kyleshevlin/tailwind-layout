@@ -1,6 +1,18 @@
-import { maybe } from '../src/utils'
+import { makeClassnames } from '../src/utils'
 
-test('maybe', () => {
-  expect(maybe(true, 'test')).toEqual(['test'])
-  expect(maybe(false, 'test')).toEqual([])
+test('makeClassnames', () => {
+  expect(
+    makeClassnames(
+      'a',
+      [true, 'b'],
+      [1, 'c'],
+      ['test', 'd'],
+      [{}, 'e'],
+      [[], 'f'],
+      [false, 'baz'],
+      ['', 'baz'],
+      [0, 'baz'],
+      [null, 'baz']
+    )
+  ).toEqual('a b c d e f')
 })

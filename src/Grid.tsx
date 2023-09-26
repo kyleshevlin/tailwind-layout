@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { maybe } from './utils'
+import { makeClassnames } from './utils'
 
 export interface GridProps {
   children: React.ReactNode
@@ -17,15 +17,13 @@ export function Grid({
   rows,
   ...rest
 }: GridProps) {
-  const classnames = [
+  const classnames = makeClassnames(
     'grid',
-    ...maybe(cols, `grid-cols-${cols}`),
-    ...maybe(gap, `gap-${gap}`),
-    ...maybe(rows, `grid-rows-${rows}`),
-    className,
-  ]
-    .join(' ')
-    .trim()
+    [cols, `grid-cols-${cols}`],
+    [gap, `gap-${gap}`],
+    [rows, `grid-rows-${rows}`],
+    className
+  )
 
   return (
     <div className={classnames} {...rest}>
