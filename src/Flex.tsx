@@ -58,7 +58,7 @@ export interface FlexItemProps {
   align?: 'auto' | 'start' | 'end' | 'center' | 'stretch' | 'baseline'
   basis?: number | string
   children: React.ReactNode
-  className: string
+  className?: string
   grow?: number
   shrink?: number
 }

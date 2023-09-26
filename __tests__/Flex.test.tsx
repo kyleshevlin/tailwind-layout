@@ -1,13 +1,12 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { Flex, Stack, Row } from '../src/Flex'
+import { Flex, Stack, Row, FlexItem } from '../src/Flex'
 
 test('Flex', () => {
   const result = render(
     <Flex
       align="center"
       className="foo bar"
-      direction="row"
       gap={2}
       justify="center"
       wrap="wrap"
@@ -45,5 +44,18 @@ test('Row', () => {
   expect(result.getByText('Hey')).toBeTruthy()
   expect(result.container.firstElementChild?.className).toEqual(
     'flex items-center flex-row gap-2 justify-center flex-wrap'
+  )
+})
+
+test('FlexItem', () => {
+  const result = render(
+    <FlexItem align="center" basis="1/2" grow={1} shrink={1}>
+      <div>Hey</div>
+    </FlexItem>
+  )
+
+  expect(result.getByText('Hey')).toBeTruthy()
+  expect(result.container.firstElementChild?.className).toEqual(
+    'self-center basis-1/2 grow-1 shrink-1'
   )
 })

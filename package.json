@@ -21,7 +21,7 @@
     "dev": "microbundle watch --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
     "prerelease": "rm -rf dist && npm run build",
     "release": "npx np",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
     "format": "prettier --write src/**/*.tsx"
   },
