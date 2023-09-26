@@ -9,7 +9,14 @@ export interface GridProps {
   rows?: 'none' | number
 }
 
-export function Grid({ children, className, gap, cols, rows }: GridProps) {
+export function Grid({
+  children,
+  className,
+  gap,
+  cols,
+  rows,
+  ...rest
+}: GridProps) {
   const classnames = [
     'grid',
     ...maybe(cols, `grid-cols-${cols}`),
@@ -20,5 +27,9 @@ export function Grid({ children, className, gap, cols, rows }: GridProps) {
     .join(' ')
     .trim()
 
-  return <div className={classnames}>{children}</div>
+  return (
+    <div className={classnames} {...rest}>
+      {children}
+    </div>
+  )
 }

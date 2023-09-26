@@ -25,6 +25,7 @@ export function Margin({
   right,
   top,
   vertical,
+  ...rest
 }: MarginProps) {
   const el = inline ? 'span' : 'div'
 
@@ -41,5 +42,5 @@ export function Margin({
     .join(' ')
     .trim()
 
-  return React.createElement(el, { className: classnames }, children)
+  return React.createElement(el, { className: classnames, ...rest }, children)
 }

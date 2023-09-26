@@ -11,7 +11,7 @@ function maybeNegate(num: number) {
   return num < 0 ? '-' : ''
 }
 
-export function ShiftBy({ children, x = 0, y = 0 }: ShiftByProps) {
+export function ShiftBy({ children, x = 0, y = 0, ...rest }: ShiftByProps) {
   const classnames = [
     ...maybe(x, `${maybeNegate(x)}translate-x-${Math.abs(x)}-px`),
     ...maybe(y, `${maybeNegate(y)}translate-y-${Math.abs(y)}-px`),
@@ -19,5 +19,9 @@ export function ShiftBy({ children, x = 0, y = 0 }: ShiftByProps) {
     .join(' ')
     .trim()
 
-  return <div className={classnames}>{children}</div>
+  return (
+    <div className={classnames} {...rest}>
+      {children}
+    </div>
+  )
 }
